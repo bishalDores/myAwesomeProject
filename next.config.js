@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  env: {
+    BASE_URL: "https://reqres.in",
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
