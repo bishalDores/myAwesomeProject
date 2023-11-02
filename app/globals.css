@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.language-selector button {
+  height: 43px;
+  background-color: #f0f5fa;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.language-selector button:hover {
+  background-color: #f0f5fa;
+}
+
+.language-selector button span {
+  font-size: 12px;
+  color: #b0b7c3;
+  font-weight: 500;
+}
