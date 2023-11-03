@@ -1,23 +1,30 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Select, SelectItem } from "@nextui-org/react";
 import { SelectorSvg } from "./SVGs";
 
 const Navigation = () => {
+  const [lng, setLng] = useState("en");
+
   return (
-    <nav className="flex justify-between pt-7 md:px-[81px] px-7 items-center">
+    <nav className="flex justify-between pt-7 md:px-[81px] px-7 items-center h-[74px]">
       <div>
         <Image src={"/images/logo.png"} alt="logo" width={159.065} height={45.816} />
       </div>
 
       <div>
-        <Select className="rounded-2xl w-[146px] language-selector " placeholder="English (UK)" selectorIcon={<SelectorSvg />}>
-          <SelectItem key={"english"} value={"english"} className="text-[12px]">
-            English (UK)
+        <Select
+          className="rounded-2xl w-[146px] language-selector "
+          placeholder="English (UK)"
+          selectorIcon={<SelectorSvg />}
+          onChange={(e) => setLng(e.target.value)}
+        >
+          <SelectItem key={"English (UK)"} textValue={"English (UK)"}>
+            <span className="text-tiny text-default-400"> English (UK)</span>
           </SelectItem>
-          <SelectItem key={"bengali"} value={"bengali"} className="text-[12px]">
-            Bengali
+          <SelectItem key={"Bengali"} textValue={"Bengali"}>
+            <span className="text-tiny text-default-400">Bengali</span>
           </SelectItem>
         </Select>
       </div>

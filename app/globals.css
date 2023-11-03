@@ -23,3 +23,7 @@ body {
   color: #b0b7c3;
   font-weight: 500;
 }
+
+input:checked + div svg {
+  @apply block;
+}
