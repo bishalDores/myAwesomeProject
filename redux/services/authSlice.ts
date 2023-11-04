@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
 
 type SuccessToken = {
   token: string;
@@ -14,9 +15,11 @@ export const authSlice = createSlice({
   reducers: {
     setRegisterToken: (state, action: PayloadAction<string>) => {
       state.token = action.payload;
+      Cookies.set("stacksToken", action.payload, { secure: false });
     },
     setLoginToken: (state, action: PayloadAction<string>) => {
       state.token = action.payload;
+      Cookies.set("stacksToken", action.payload, { secure: false });
     },
   },
 });

@@ -1,22 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import SignUpPage from "@/components/pages/SignUpPage";
 import type { Metadata } from "next";
+import SignInPage from "@/components/pages/SignInPage";
 
 export const metadata: Metadata = {
-  title: "Sign Up",
-  description: "Sign Up",
+  title: "Sign In",
+  description: "Sign In",
 };
 
-const SignUp = () => {
+const SignIn = () => {
   const cookieStore = cookies();
   const token = cookieStore.get("stacksToken");
   if (token?.value) {
     redirect("/");
   }
 
-  return <SignUpPage />;
+  return <SignInPage />;
 };
 
-export default SignUp;
+export default SignIn;
