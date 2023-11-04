@@ -9,6 +9,7 @@ import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-o
 import { removeToken } from "@/redux/services/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { useRouter } from "next/navigation";
+import { CiLogout } from "react-icons/ci";
 
 const DashboardMenu = [
   { title: "Home", icon: <DashboardIcon />, route: "/dashboard/home" },
@@ -28,7 +29,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <div className="h-full fixed z-[1] top-0 left-0 overflow-x-hidden w-[270px] border border-r-[#F3F3F3] pt-[31px] pl-[34px] pr-[16px]">
+      <div className="h-full fixed z-[1] top-0 left-0 overflow-x-hidden w-[270px] border border-r-[#F3F3F3] pt-[31px] pl-[34px] pr-[16px] lg:translate-x-[0%] translate-x-[-100%] transition">
         <Image src={"/images/logo.png"} alt="logo" width={159.065} height={45.816} className="mb-[42px]" />
         <div>
           <h3 className="uppercase text-[#B0B7C3] text-[12px] font-medium tracking-[0.84px] mb-[28px]">pages</h3>
@@ -53,10 +54,10 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
       </div>
-      <div className="ml-[270px] pl-[38px] pr-[35px]">
+      <div className="lg:ml-[270px] ml-0  pl-[38px] pr-[35px]">
         <div className="pt-[23px] mb-[48px] flex justify-between items-center">
           {/* //search input */}
-          <div className="w-[539px]">
+          <div className="md:w-[539px] w-[200px]">
             <div className="relative w-full">
               <input
                 type="text"
@@ -78,8 +79,24 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                   <DropdownTrigger>
                     <Image src={"/images/user.png"} alt="user" width={47} height={47} className="rounded-full" />
                   </DropdownTrigger>
-                  <DropdownMenu aria-label="Profile Actions">
-                    <DropdownItem key="log-out">
+                  <DropdownMenu aria-label="Profile Actions" variant="faded">
+                    <DropdownItem key="home" startContent={<DashboardIcon />}>
+                      <span className="text-[12px]">
+                        <Link href={"/dashboard/home"}>Home</Link>
+                      </span>
+                    </DropdownItem>
+                    <DropdownItem key="home" startContent={<UserIcon />}>
+                      <span className="text-[12px]">
+                        <Link href={"/dashboard/users"}>Users</Link>
+                      </span>
+                    </DropdownItem>
+                    <DropdownItem key="home" startContent={<SalesIcon />}>
+                      <span className="text-[12px]">
+                        <Link href={"/dashboard/sales"}>Sales</Link>
+                      </span>
+                    </DropdownItem>
+
+                    <DropdownItem key="log-out" startContent={<CiLogout />}>
                       <span className="text-[12px]" onClick={logoutHandler}>
                         Log Out
                       </span>

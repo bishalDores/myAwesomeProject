@@ -49,7 +49,7 @@ const DashboardUsersPage = () => {
                       <tr key={item.id}>
                         <td className="px-5 py-5 bg-white text-[#4E5D78] text-[14px] font-semibold text-center">{item.id}</td>
                         <td className="px-5 py-5 bg-white text-sm">
-                          <div className="flex items-center">
+                          <div className="flex items-center md:flex-row flex-col md:justify-start justify-center">
                             <div className="flex-shrink-0 ">
                               <Image src={item.avatar} className="rounded-[15px]" width={60} height={60} alt={"user image"} />
                             </div>

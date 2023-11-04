@@ -27,6 +27,7 @@ const schema = yup
 
 const SignInPage = () => {
   const [remember, setRemember] = useState(false);
+  const [visible, setVisible] = useState(false);
   const dispatch = useAppDispatch();
   const screenSize = useScreenSize();
   const router = useRouter();
@@ -49,6 +50,9 @@ const SignInPage = () => {
     }
   };
 
+  const toggleVisibility = () => {
+    setVisible((prev) => !prev);
+  };
   return (
     <>
       <Navigation />
@@ -64,6 +68,7 @@ const SignInPage = () => {
             variant="bordered"
             startContent={<GoogleIcon />}
             className="w-[255px] h-[58px] bg-[#F0F5FA] border-0 rounded-2xl text-[#8A94A6] text-[16px] font-medium sm:mr-[30px] mb-5 sm:mb-0"
+            onClick={() => toast.success("Work in progress...")}
           >
             Sign Up with Google
           </Button>
@@ -71,6 +76,7 @@ const SignInPage = () => {
             variant="bordered"
             startContent={<AppleIcon />}
             className="w-[255px] h-[58px] bg-[#F0F5FA] border-0 rounded-2xl text-[#8A94A6] text-[16px] font-medium"
+            onClick={() => toast.success("Work in progress...")}
           >
             Sign Up with Apple ID
           </Button>
@@ -100,7 +106,7 @@ const SignInPage = () => {
           <div className="w-full mb-[30px]">
             <div className="relative w-full">
               <input
-                type="password"
+                type={visible ? "text" : "password"}
                 className={`pl-11 pr-11 py-4 border rounded-2xl ${
                   errors.password?.message ? `border-[#FF5630] error-shadow` : "border-[#F3F3F3]"
                 } w-full focus-visible:outline-none placeholder:text-[16px] placeholder:text-[#B0B7C3] font-medium`}
@@ -110,7 +116,7 @@ const SignInPage = () => {
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <LockIcon />
               </div>
-              <div className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
+              <div className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer" onClick={toggleVisibility}>
                 <EyeIcon />
               </div>
             </div>
