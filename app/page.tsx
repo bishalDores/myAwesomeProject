@@ -7,6 +7,8 @@ export default function Home() {
   const token = cookieStore.get("stacksToken");
   if (!token?.value) {
     redirect("/auth/signUp");
+  } else {
+    redirect("/dashboard/home");
   }
 
   return (
