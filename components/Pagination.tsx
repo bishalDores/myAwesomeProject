@@ -75,7 +75,7 @@ const Pagination = ({
             </div>
           }
           onClick={() => gotoPage(pageIndex + 1)}
-          disabled={!canNextPage}
+          disabled={!(pageIndex < pageCount - 1)}
         />
       </li>
       <li>

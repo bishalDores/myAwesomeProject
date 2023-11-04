@@ -6,6 +6,9 @@ import { DashboardIcon, NotificationIcon, SalesIcon, SearchIcon, UserIcon } from
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
+import { removeToken } from "@/redux/services/authSlice";
+import { useAppDispatch } from "@/redux/hooks";
+import { useRouter } from "next/navigation";
 
 const DashboardMenu = [
   { title: "Home", icon: <DashboardIcon />, route: "/dashboard/home" },
@@ -15,8 +18,14 @@ const DashboardMenu = [
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
-  console.log(pathname.split("/")[2]);
+  const logoutHandler = () => {
+    dispatch(removeToken());
+    router.push("/");
+  };
+
   return (
     <>
       <div className="h-full fixed z-[1] top-0 left-0 overflow-x-hidden w-[270px] border border-r-[#F3F3F3] pt-[31px] pl-[34px] pr-[16px]">
@@ -71,7 +80,9 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                   </DropdownTrigger>
                   <DropdownMenu aria-label="Profile Actions">
                     <DropdownItem key="log-out">
-                      <span className="text-[12px]">Log Out</span>
+                      <span className="text-[12px]" onClick={logoutHandler}>
+                        Log Out
+                      </span>
                     </DropdownItem>
                   </DropdownMenu>
                 </Dropdown>

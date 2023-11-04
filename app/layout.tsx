@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "@/redux/provider";
 import { UIProvidersNext } from "@/components/UIProvidersNext";
 import { Toaster } from "sonner";
+import NextTopLoader from "nextjs-toploader";
 
 const inter = Inter({ subsets: ["latin"], weight: ["300", "400", "600", "700", "800"] });
 
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <UIProvidersNext>
           <Providers>
+            <NextTopLoader color="#2F80ED" />
             <Toaster closeButton={true} />
             {children}
           </Providers>

@@ -13,6 +13,7 @@ import { postRequest } from "@/utils/httpsHandlers";
 import { setRegisterToken } from "@/redux/services/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import useScreenSize from "@/utils/useScreenSize";
+import { useRouter } from "next/navigation";
 
 const schema = yup
   .object({
@@ -30,6 +31,7 @@ const SignUpPage = () => {
   const [termsAgreed, setTermsAgreed] = useState(false);
   const dispatch = useAppDispatch();
   const screenSize = useScreenSize();
+  const router = useRouter();
 
   const {
     register,
@@ -127,6 +129,7 @@ const SignUpPage = () => {
         toast.error(response.error);
       } else {
         dispatch(setRegisterToken(response.token));
+        router.push("/dashboard/home");
       }
     } else {
       toast.error("Please do agree to the terms and conditions.");

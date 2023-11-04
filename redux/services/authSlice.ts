@@ -1,3 +1,5 @@
+"use client";
+
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 
@@ -21,8 +23,12 @@ export const authSlice = createSlice({
       state.token = action.payload;
       Cookies.set("stacksToken", action.payload, { secure: false });
     },
+    removeToken: (state) => {
+      state.token = "";
+      Cookies.remove("stacksToken");
+    },
   },
 });
 
-export const { setRegisterToken, setLoginToken } = authSlice.actions;
+export const { setRegisterToken, setLoginToken, removeToken } = authSlice.actions;
 export default authSlice.reducer;

@@ -13,6 +13,7 @@ import { postRequest } from "@/utils/httpsHandlers";
 import { setLoginToken } from "@/redux/services/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import useScreenSize from "@/utils/useScreenSize";
+import { useRouter } from "next/navigation";
 
 const schema = yup
   .object({
@@ -28,6 +29,7 @@ const SignInPage = () => {
   const [remember, setRemember] = useState(false);
   const dispatch = useAppDispatch();
   const screenSize = useScreenSize();
+  const router = useRouter();
 
   const {
     register,
@@ -43,10 +45,10 @@ const SignInPage = () => {
       toast.error(response.error);
     } else {
       dispatch(setLoginToken(response.token));
+      router.push("/dashboard/home");
     }
   };
 
-  console.log(screenSize);
   return (
     <>
       <Navigation />
